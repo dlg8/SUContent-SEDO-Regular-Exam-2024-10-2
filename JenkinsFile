@@ -1,34 +1,26 @@
 pipeline {
     agent any 
 
-    when {
-
-        branch "feature-ci-pipeline"
-    
+    when { 
+        branch 'feature-ci-pipeline'
     }
 
     stages {
         stage('Restore dependencies') { 
             steps {
-                script {
-                    bat "dotnet restore"
-                }
+                bat "dotnet restore"
             }
         }
         stage('Dotnet build') { 
             steps {
-                script {
-                    bat "dotnet build --no-restore"
-                }
+                bat "dotnet build --no-restore"
             }
         }
         stage('Execute tests') { 
             steps {
-                script {
-                    bat "dotnet test --no-build --verbosity normal"
-                }
+                bat "dotnet test --no-build --verbosity normal"
             }
         }
     }
-    
 }
+
